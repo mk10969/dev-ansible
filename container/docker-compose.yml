@@ -1,0 +1,53 @@
+# docker-compose --compatibility up -d --build
+# docker-compose ftd_file_download
+
+version: "3.4"
+x-var: &var "var"
+
+services:
+  dev-ansible-base:
+    build:
+      context: ./dev-ansible-base
+      # args:
+      #   xxxxx: xxxxxx
+    image: dev-ansible-base:latest
+    container_name: dev-ansible-base
+    hostname: dev-ansible-base
+    restart: "no"
+    logging:
+      driver: "none"
+
+  dev-ansible-manager:
+    build:
+      context: ./dev-ansible-manager
+      # args:
+      #   xxxxx: xxxxxx
+    image: dev-ansible-manager:latest
+    container_name: dev-ansible-manager
+    hostname: dev-ansible-manager
+    restart: "no"
+    volumes:
+      - ../ansible.cfg:/opt/ansible/ansible.cfg
+      - ../inventories:/opt/ansible/inventories
+      - ../playbooks:/opt/ansible/playbooks
+      - ../roles:/opt/ansible/roles
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  dev-ansible-target:
+    build:
+      context: ./dev-ansible-target
+      # args:
+      #   xxxxx: xxxxxx
+    image: dev-ansible-target:latest
+    container_name: dev-ansible-target
+    hostname: dev-ansible-target
+    restart: "no"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
