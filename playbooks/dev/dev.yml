@@ -1,0 +1,5 @@
+- name: dev Deployment and Configuration
+  hosts: dev
+  become: yes
+  roles:
+    - test

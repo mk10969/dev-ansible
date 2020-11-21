@@ -9,6 +9,7 @@ RUN groupadd -g 1010 ansible-manager \
     && mkdir -p /var/log/ansible \
     && chown ansible-manager: /var/log/ansible \
     && mkdir -p /home/ansible-manager/.ssh \
+    && chown ansible-manager: /home/ansible-manager/.ssh \
     && chmod 700 /home/ansible-manager/.ssh \
     && ln -s /opt/ansible /home/ansible-manager/ansible
 

@@ -1,5 +1,5 @@
 # docker-compose --compatibility up -d --build
-# docker-compose ftd_file_download
+# docker-compose down
 
 version: "3.4"
 x-var: &var "var"
