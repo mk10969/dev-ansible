@@ -2,7 +2,7 @@ FROM dev-ansible-base:latest
 
 SHELL ["/bin/bash", "-c"]
 
-RUN pip3 install ansible
+RUN pip3 install -U ansible
 
 RUN groupadd -g 1010 ansible-manager \
     && useradd -g 1010 -u 1010 -m -s /bin/bash ansible-manager \
