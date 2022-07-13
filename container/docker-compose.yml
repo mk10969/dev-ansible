@@ -36,6 +36,8 @@ services:
       options:
         max-size: "10m"
         max-file: "3"
+    depends_on:
+      - dev-ansible-base
 
   dev-ansible-target:
     build:
@@ -45,9 +47,12 @@ services:
     image: dev-ansible-target:latest
     container_name: dev-ansible-target
     hostname: dev-ansible-target
+    privileged: true # use systemd
     restart: "no"
     logging:
       driver: "json-file"
       options:
         max-size: "10m"
         max-file: "3"
+    depends_on:
+      - dev-ansible-base

@@ -2,7 +2,9 @@ FROM dev-ansible-base:latest
 
 SHELL ["/bin/bash", "-c"]
 
-RUN pip3 install -U ansible
+# RUN LC_ALL=en_US.UTF-8 pip3 install -U ansible
+
+RUN yum -y install epel-release && yum -y update && yum -y install ansible
 
 RUN groupadd -g 1010 ansible-manager \
     && useradd -g 1010 -u 1010 -m -s /bin/bash ansible-manager \
