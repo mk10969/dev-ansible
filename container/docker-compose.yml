@@ -36,8 +36,6 @@ services:
       options:
         max-size: "10m"
         max-file: "3"
-    depends_on:
-      - dev-ansible-base
 
   dev-ansible-target:
     build:
@@ -54,5 +52,3 @@ services:
       options:
         max-size: "10m"
         max-file: "3"
-    depends_on:
-      - dev-ansible-base

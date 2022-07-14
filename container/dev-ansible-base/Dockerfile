@@ -17,10 +17,14 @@ RUN (cd /lib/systemd/system/sysinit.target.wants/; for i in *; do [ $i == system
     rm -f /lib/systemd/system/anaconda.target.wants/*;\
     mv  /var/tmp/systemd-user-sessions.service /lib/systemd/system/multi-user.target.wants/systemd-user-sessions.service;
 
+### https://qiita.com/yuki2006/items/6cea8c352e38f047b52a#comment-8e863c71962008035d0d
+# RUN yum -y reinstall glibc-common
+# RUN localedef -v -c -i ja_JP -f UTF-8 ja_JP.UTF-8; echo "";
+# ENV LANG=ja_JP.UTF-8
+RUN rm -f /etc/localtime
+RUN ln -fs /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
 
-RUN cp /usr/share/zoneinfo/Asia/Tokyo /etc/localtime \
-    && echo 'LANG="ja_JP.UTF-8"' > /etc/localtime \
-    && yum -y install openssh openssh-clients sshpass python3 sudo vim less telnet nc screen tcpdump strace net-tools iproute bind-utils \
+RUN yum -y install openssh openssh-clients sshpass python3 sudo vim less telnet nc screen tcpdump strace net-tools iproute bind-utils \
     && yum clean all
 
 # CMD [ "/bin/bash" ]

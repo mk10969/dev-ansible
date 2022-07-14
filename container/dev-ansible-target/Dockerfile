@@ -15,7 +15,7 @@ RUN ssh-keygen -b 2048 -t rsa -N "" -f /etc/ssh/ssh_host_rsa_key \
     && mkdir -p /home/rmt_op/.ssh \
     && chown rmt_op: /home/rmt_op/.ssh \
     && chmod 700 /home/rmt_op/.ssh \
-    && echo 'rmt_op ALL=(ALL) NOPASSWORD:ALL' > /etc/sudoers.d/010_rmt_op_nopassword
+    && echo 'rmt_op        ALL=(ALL)       NOPASSWD: ALL ' > /etc/sudoers.d/010_rmt_op_nopassword
 
 
 # ssh 秘密鍵配布
